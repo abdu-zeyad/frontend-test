@@ -25,7 +25,7 @@ export class Home extends Component {
       strDrink: this.state.data[idx].strDrink,
       strDrinkThumb: this.state.data[idx].strDrinkThumb,
     };
-    await axios.post(`${server}/addtofav`);
+    await axios.post(`${server}/addtofav`, obj);
     console.log(obj);
   };
   render() {
