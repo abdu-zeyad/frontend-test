@@ -44,7 +44,7 @@ export class Favorite extends Component {
     const obj = {
       strDrink: e.target.strDrink.value,
       strDrinkThumb: e.target.strDrinkThumb.value,
-      id: this.state.Favdata[this.state.index],
+      id: this.state.Favdata[this.state.index]["_id"],
     };
     console.log(obj);
     const server = process.env.REACT_APP_SERVER;
@@ -52,6 +52,7 @@ export class Favorite extends Component {
     const newData = await axios.put(`${server}/update}`, obj);
     this.setState({
       Favdata: newData.data,
+      show: false,
     });
   };
   handleclose = () => {

@@ -34,11 +34,7 @@ export class Favoriteform extends Component {
                 />
               </Form.Group>
 
-              <Button
-                variant="primary"
-                type="submit"
-                onClick={this.props.handleclose}
-              >
+              <Button variant="primary" type="submit">
                 Submit
               </Button>
             </Form>
