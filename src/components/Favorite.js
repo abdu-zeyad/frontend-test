@@ -8,6 +8,10 @@ export class Favorite extends Component {
     super(props);
     this.state = {
       Favdata: [],
+      show: false,
+      strDrink: "",
+      strDrinkThumb: "",
+      index: -1,
     };
   }
   componentDidMount = async () => {
@@ -27,6 +31,29 @@ export class Favorite extends Component {
       Favdata: newData.data,
     });
   };
+  update = async (idx) => {
+    this.setState({
+      show: true,
+      index: idx,
+      strDrink: this.state.Favdata[idx].strDrink,
+      strDrinkThumb: this.state.Favdata[idx].strDrinkThumb,
+    });
+  };
+  upadtedataform = async (e) => {
+    e.preventDefault();
+    const obj = {
+      strDrink: e.target.strDrink.value,
+      strDrinkThumb: e.target.strDrinkThumb.value,
+      id: this.state.Favdata[this.state.index],
+    };
+    console.log(obj);
+    const server = process.env.REACT_APP_SERVER;
+
+    const newData = await axios.put(`${server}/update}`, obj);
+    this.setState({
+      Favdata: newData.data,
+    });
+  };
   render() {
     return (
       <div>
@@ -39,14 +66,14 @@ export class Favorite extends Component {
                   <Card.Body>
                     <Card.Title>{item.strDrink}</Card.Title>
                     <Card.Text></Card.Text>
-                    {/* <Button
+                    <Button
                       variant="primary"
                       onClick={() => {
-                        this.props.AddToFav(this.props.idx);
+                        this.update(idx);
                       }}
                     >
                       update
-                    </Button> */}
+                    </Button>
                     <Button
                       variant="primary"
                       onClick={() => {
@@ -61,7 +88,12 @@ export class Favorite extends Component {
             );
           })}
         </Row>
-        <Favoriteform />
+        <Favoriteform
+          show={this.state.show}
+          strDrink={this.state.strDrink}
+          strDrinkThumb={this.state.strDrinkThumb}
+          upadtedataform={this.upadtedataform}
+        />
       </div>
     );
   }
