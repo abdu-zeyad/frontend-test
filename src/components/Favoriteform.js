@@ -11,7 +11,7 @@ export class Favoriteform extends Component {
           // backdrop="static"
           // keyboard={false}
         >
-          <Modal.Header closeButton>
+          <Modal.Header closeButton onClick={this.props.handleclose}>
             <Modal.Title>Modal title</Modal.Title>
           </Modal.Header>
           <Modal.Body>
@@ -34,7 +34,11 @@ export class Favoriteform extends Component {
                 />
               </Form.Group>
 
-              <Button variant="primary" type="submit">
+              <Button
+                variant="primary"
+                type="submit"
+                onClick={this.props.handleclose}
+              >
                 Submit
               </Button>
             </Form>

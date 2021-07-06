@@ -54,6 +54,11 @@ export class Favorite extends Component {
       Favdata: newData.data,
     });
   };
+  handleclose = () => {
+    this.setState({
+      show: false,
+    });
+  };
   render() {
     return (
       <div>
@@ -93,6 +98,7 @@ export class Favorite extends Component {
           strDrink={this.state.strDrink}
           strDrinkThumb={this.state.strDrinkThumb}
           upadtedataform={this.upadtedataform}
+          handleclose={this.handleclose}
         />
       </div>
     );
